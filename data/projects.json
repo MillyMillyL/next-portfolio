@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Shadcn Next.js Dashboard",
+    "description": "Description for Project A",
+    "image": "/projectImages/shadcn-nextjs-dashboard-3lbk.png",
+    "tags": ["Next JS", "Shadcn"],
+    "github": "https://github.com/MillyMillyL/shadcn-dashboard",
+    "Deployment": "https://shadcn-dashboard-3lkd.vercel.app/",
+    "slug": "shadcn-nextjs-dashboard-3lbk"
+  },
+  {
+    "id": 2,
+    "name": "Split Bill with Friends",
+    "description": "Eat & Split - Split bill with your friends",
+    "image": "/projectImages/split-bill-with-friends-4edv.png",
+    "tags": ["React"],
+    "github": "https://github.com/MillyMillyL/eat-n-split",
+    "Deployment": "https://split-bill-with-friends-app.netlify.app/",
+    "slug": "split-bill-with-friends-4edv"
+  }
+]
