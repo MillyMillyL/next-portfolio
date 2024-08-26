@@ -38,7 +38,7 @@ function ContactForm() {
   console.log("form", form);
 
   async function handleFormSubmit(values: z.infer<typeof formSchema>) {
-    const { name, email, message } = Object.fromEntries(values);
+    // const { name, email, message } = Object.fromEntries(values);
 
     await fetch(
       "https://script.google.com/macros/s/AKfycbwc2AzgyRhDBEDprvDnWA4uMTC9S73UrKRvk0Sd0fo/dev",
