@@ -60,6 +60,13 @@ const projectList = [
     description: "description",
     github: "",
   },
+  {
+    title: "Send Contacts to Google Sheet",
+    previewUrl: "https://send-contact-to-google-sheet.netlify.app/",
+    tags: ["HTML", "CSS", "JavaScript"],
+    description: "description",
+    github: "https://github.com/MillyMillyL/contactform-googlesheet",
+  },
 ];
 
 const tags = [
