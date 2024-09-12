@@ -1,8 +1,9 @@
 "use client";
 import React, { useRef } from "react";
 import { Button } from "./ui/button";
-import { FolderGit2 } from "lucide-react";
+
 import { Project } from "@/app/projects/[slug]/page";
+import Link from "next/link";
 
 function ProjectComponent({ project }: { project: Project }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -37,30 +38,37 @@ function ProjectComponent({ project }: { project: Project }) {
           allowFullScreen
         ></iframe>
         <Button
-          variant="ghost"
+          variant="link"
           onClick={toggleFullScreen}
-          className="absolute right-2 bottom-2"
+          className="absolute right-0 bottom-0 bg-green-500"
         >
           Go Full Screen
         </Button>
       </div>
-      <div className="flex justify-center">
-        <Button variant="link">Code on Github</Button>
-        <Button variant="link">Deployment on Vercel</Button>
+      <div className="flex justify-between px-2">
+        <Button variant="link" asChild>
+          <Link href={project.github} target="_blank">
+            Github
+          </Link>
+        </Button>
+        <Button variant="link" asChild>
+          <Link href={project.previewUrl} target="_blank">
+            Website
+          </Link>
+        </Button>
       </div>
-      <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-      <div>
-        <p className="flex gap-2 items-center">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className=" bg-green-500 py-1 px-2 rounded-sm text-accent-foreground"
-            >
-              {tag}
-            </span>
-          ))}
-        </p>
-      </div>
+      <h3 className="text-xl font-semibold">{project.title}</h3>
+
+      <p className="flex gap-2 items-center my-2">
+        {project.tags.map((tag) => (
+          <span
+            key={tag}
+            className=" bg-green-500 py-1 px-2 rounded-sm text-accent-foreground"
+          >
+            {tag}
+          </span>
+        ))}
+      </p>
 
       <p>{project.description}</p>
     </div>
