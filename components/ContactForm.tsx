@@ -7,7 +7,6 @@ import { Button } from "./ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -35,41 +34,34 @@ function ContactForm() {
     resolver: zodResolver(formSchema),
     defaultValues: { name: "", email: "", message: "" },
   });
-  console.log("form", form);
 
   async function handleFormSubmit(values: z.infer<typeof formSchema>) {
-    // const { name, email, message } = Object.fromEntries(values);
+    const formData = new URLSearchParams();
+    formData.append("name", values.name);
+    formData.append("email", values.email);
+    formData.append("message", values.message);
 
-    await fetch(
-      "https://script.google.com/macros/s/AKfycbwc2AzgyRhDBEDprvDnWA4uMTC9S73UrKRvk0Sd0fo/dev",
-      {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          "Content-Type": "application/json",
-        },
+    try {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbyWycNABwc4yUC22q73zhos3BwEgkPaKb5IWjTvCyJLDIkOSOs5QOOcOdggdGIZDJRJ/exec",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (response.ok) {
+        console.log("Message sent successfully!");
+        // Optionally reset form or display success message
+        form.reset();
+      } else {
+        console.error("Failed to send message.");
+        // Show an error message to the user
       }
-    );
-    // try {
-    //   const res = await fetch(
-    //     "https://script.google.com/macros/s/AKfycbxcfdU2yYw4z3_7RnwVsOs-cExwFFAA70uiC7ztQw7sNT8eSoap2vLc9nMveHxrfA6d/exec",
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify(values),
-    //     }
-    //   );
-
-    //   if (res.ok) {
-    //     console.log("Message sent successfully!");
-    //   } else {
-    //     console.error("Failed to send message.");
-    //   }
-    // } catch (error) {
-    //   console.error("An error occurred:", error);
-    // }
+    } catch (error) {
+      console.error("An error occurred:", error);
+      // Show an error message to the user
+    }
   }
   return (
     <div
